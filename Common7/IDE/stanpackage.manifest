@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <assemblyIdentity name="StanPackage" version="15.0.0.0" publicKeyToken="b03f5f7f11d50a3a" processorArchitecture="x86"></assemblyIdentity>
+  <clrClass clsid="{4BB4F5F0-0E24-3644-A6E7-D5FB943EDCB4}" progid="Microsoft.VisualStudio.CodeAnalysis.VsCodeAnalysisSuppressionService" threadingModel="Both" name="Microsoft.VisualStudio.CodeAnalysis.VsCodeAnalysisSuppressionService" runtimeVersion="v4.0.30319"></clrClass>
+  <clrClass clsid="{C2F4DE19-2F4F-399E-8D53-C8368592C3A8}" progid="Microsoft.VisualStudio.CodeAnalysis.VsCodeAnalysisSuppressionServiceWrapper" threadingModel="Both" name="Microsoft.VisualStudio.CodeAnalysis.VsCodeAnalysisSuppressionServiceWrapper" runtimeVersion="v4.0.30319"></clrClass>
+  <file name="StanPackage.dll" hashalg="SHA1">
+    <comClass clsid="{F799075D-48A9-4F56-9593-86D035A8E1A7}" threadingModel="Both"/>
+  </file>
+  <comInterfaceExternalProxyStub name="ITaskOutputParser" iid="{9CB40B67-20CF-488A-958F-66C69BAA0D9A}" numMethods="4" proxyStubClsid32="{F799075D-48A9-4F56-9593-86D035A8E1A7}"/>
+  <comInterfaceExternalProxyStub name="IVCBuildErrorContext2" iid="{C8AB0FAB-34AA-4064-BF47-82CB9F0F469B}" numMethods="9" proxyStubClsid32="{F799075D-48A9-4F56-9593-86D035A8E1A7}"/>
+</assembly>

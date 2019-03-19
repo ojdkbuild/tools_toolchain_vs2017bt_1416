@@ -1,0 +1,3 @@
+[$RootKey$\Setup\EDev]
+"FxCopDir"="$ShellFolder$\Team Tools\Static Analysis Tools\FxCop\"
+"StanDir"="$ShellFolder$\Team Tools\Static Analysis Tools\"

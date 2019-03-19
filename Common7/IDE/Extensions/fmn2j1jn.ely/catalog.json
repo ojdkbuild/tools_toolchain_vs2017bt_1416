@@ -1,0 +1,1 @@
+{"manifestVersion":"1.1","info":{"id":"MLGen,version=2.4"},"packages":[{"id":"MLGen","version":"2.4","type":"Vsix","payloads":[{"fileName":"MLGenSln.vsix","size":74225}],"vsixId":"MLGen","extensionDir":"[installdir]\\Common7\\IDE\\Extensions\\fmn2j1jn.ely","installSizes":{"targetDrive":737431}}]}

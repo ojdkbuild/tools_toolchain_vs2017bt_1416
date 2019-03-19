@@ -1,0 +1,13 @@
+[$RootKey$\CLSID\{960d6d3a-0bd3-4afa-a0a6-31f7f2fe3a8e}]
+@="VCRuleSelectionPage class"
+"InprocServer32"="$ShellFolder$\Common7\IDE\PrivateAssemblies\stanpackage.dll"
+"ThreadingModel"="Apartment"
+
+[$RootKey$\CLSID\{984ae51a-4b21-44e7-822c-dd5e046893ef}]
+@="VSRuleSelectionPage class"
+"InprocServer32"="$ShellFolder$\Common7\IDE\PrivateAssemblies\stanpackage.dll"
+"ThreadingModel"="Apartment"
+
+[$RootKey$\Packages\{72391CE3-743A-4a55-8927-4217541F6517}]
+@="StanPackage"
+"InprocServer32"="$ShellFolder$\Common7\IDE\PrivateAssemblies\stanpackage.dll"

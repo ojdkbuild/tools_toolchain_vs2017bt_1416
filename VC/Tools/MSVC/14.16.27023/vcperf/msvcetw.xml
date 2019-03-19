@@ -1,0 +1,807 @@
+<!-- <?xml version="1.0" encoding="UTF-16"?> -->
+<instrumentationManifest
+    xmlns="http://schemas.microsoft.com/win/2004/08/events" 
+    xmlns:win="http://manifests.microsoft.com/win/2004/08/windows/events"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"    
+    >
+
+    <instrumentation>
+        <events>
+            <provider   name="Microsoft.VisualCpp.Tools" 
+                        guid="{3124649c-36c0-5879-4b0e-fe163528322b}" 
+                        symbol="GUID_MSVC_PROVIDER" 
+                        resourceFileName="%MSVCETWIMAGEPATH%" 
+                        messageFileName="%MSVCETWIMAGEPATH%"
+                        >
+                
+                <keywords>
+                    <!-- TODO: Introduce keywords -->
+                </keywords> 
+                
+                <opcodes>                            
+                    <opcode name="Warning" 
+                            symbol="MSVC_ETW_OPCODE_WARNING" 
+                            value="238"/>
+                            
+                    <opcode name="CommandLine" 
+                            symbol="MSVC_ETW_OPCODE_COMMANDLINE" 
+                            value="237"/>
+                            
+                    <opcode name="EnvironmentVariable" 
+                            symbol="MSVC_ETW_OPCODE_ENVIRONMENTVARIABLE" 
+                            value="236"/>
+                            
+                </opcodes>
+                
+                <templates>    
+                    <template tid="GeneralCommandLineTemplate">
+                        <data name="CommandLine" inType="win:UnicodeString"/>
+                    </template>
+                    
+                    <template tid="GeneralEnvironmentVariableTemplate">
+                        <data name="Name" inType="win:UnicodeString"/>
+                        <data name="Value" inType="win:UnicodeString"/>
+                    </template>
+                
+                    <template tid="GeneralStopTemplate">
+                    </template>
+                    
+                    <template tid="GeneralStartTemplate">
+                    </template>
+                </templates>
+                
+                <!-- CL SECTION ****************************************************
+                ******************************************************************-->
+                <tasks>
+                    <task name="CL" 
+                          symbol="MSVC_ETW_TASK_CL"
+                          value="1">
+
+                        <opcodes>
+                            <opcode name="ExpandedCommandLine" 
+                                    symbol="MSVC_ETW_OPCODE_CL_EXPANDEDCOMMANDLINE" 
+                                    value="11"/>
+                                    
+                            <opcode name="Output" 
+                                    symbol="MSVC_ETW_OPCODE_CL_OUTPUT" 
+                                    value="12"/>
+                                    
+                            <opcode name="StartC1" 
+                                    symbol="MSVC_ETW_OPCODE_CL_STARTC1" 
+                                    value="13"/>
+                                    
+                            <opcode name="StopC1" 
+                                    symbol="MSVC_ETW_OPCODE_CL_STOPC1" 
+                                    value="14"/>
+                                    
+                            <opcode name="StartC2" 
+                                    symbol="MSVC_ETW_OPCODE_CL_STARTC2" 
+                                    value="15"/>
+                                    
+                            <opcode name="StopC2" 
+                                    symbol="MSVC_ETW_OPCODE_CL_STOPC2" 
+                                    value="16"/>
+                               
+                        </opcodes>
+                    
+                    </task>
+                    
+                </tasks>
+                
+                <templates>                    
+                    <template tid="CLStartTemplate">
+                        <data name="Version" inType="win:AnsiString"/>
+                        <data name="CurrentWorkingDirectory" inType="win:UnicodeString"/>
+                    </template>
+                    
+                    <template tid="CLOutputTemplate">
+                        <data name="Object" inType="win:UnicodeString"/>
+                    </template>
+                    
+                    <template tid="CLWarningTemplate">
+                        <data name="WarningNumber" inType="win:Int32"/>
+                    </template>
+                    
+                    <template tid="CLStartPassTemplate">
+                        <data name="Object" inType="win:UnicodeString"/>
+                    </template>
+                </templates>
+                
+                <events>
+                    <!-- CL event values must be between 0 and 499 -->
+                    <event value="0" 
+                        symbol="MsvcEtwCLStart"
+                        task="CL"
+                        opcode="win:Start"
+                        template="CLStartTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="1" 
+                        symbol="MsvcEtwCLStop"
+                        task="CL"
+                        opcode="win:Stop"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="3" 
+                        symbol="MsvcEtwCLExpandedCommandLine"
+                        task="CL"
+                        opcode="ExpandedCommandLine"
+                        template="GeneralCommandLineTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="4" 
+                        symbol="MsvcEtwCLOutput"
+                        task="CL"
+                        opcode="Output"
+                        template="CLOutputTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="5" 
+                        symbol="MsvcEtwCLWarning"
+                        task="CL"
+                        opcode="Warning"
+                        template="CLWarningTemplate" 
+                        level="win:Verbose"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="6" 
+                        symbol="MsvcEtwCLStartC1"
+                        task="CL"
+                        opcode="StartC1"
+                        template="CLStartPassTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="7" 
+                        symbol="MsvcEtwCLStopC1"
+                        task="CL"
+                        opcode="StopC1"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="8" 
+                        symbol="MsvcEtwCLStartC2"
+                        task="CL"
+                        opcode="StartC2"
+                        template="CLStartPassTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="9" 
+                        symbol="MsvcEtwCLStopC2"
+                        task="CL"
+                        opcode="StopC2"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                                      
+                    <event value="12" 
+                        symbol="MsvcEtwCLEnvironmentVariable"
+                        task="CL"
+                        opcode="EnvironmentVariable"
+                        template="GeneralEnvironmentVariableTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                </events>
+                
+                <!-- C1 SECTION ****************************************************
+                ******************************************************************-->
+                <tasks>
+                    <task name="C1" 
+                          symbol="MSVC_ETW_TASK_C1"
+                          value="2">
+                          
+                        <opcodes>
+                            <opcode name="StartHeader" 
+                                    symbol="MSVC_ETW_OPCODE_C1_STARTHEADER" 
+                                    value="11"/>
+                                    
+                            <opcode name="StopHeader" 
+                                    symbol="MSVC_ETW_OPCODE_C1_STOPHEADER" 
+                                    value="12"/>
+                               
+                        </opcodes>
+                    </task>
+                    
+                </tasks>
+                
+                <templates>                          
+                    <template tid="C1WarningTemplate">
+                        <data name="WarningNumber" inType="win:Int32"/>
+                        <data name="Level" inType="win:AnsiString"/>
+                        <data name="File" inType="win:AnsiString"/>
+                        <data name="Line" inType="win:Int32"/>
+                        <data name="Column" inType="win:Int32"/>
+                    </template>
+                    
+                    <template tid="C1StartHeaderTemplate">
+                        <data name="Header" inType="win:AnsiString"/>
+                        <data name="Depth" inType="win:Int32"/>
+                    </template>
+                    
+                    <template tid="C1StopHeaderTemplate">
+                        <data name="Depth" inType="win:Int32"/>
+                    </template>
+                </templates>
+                
+                <events>
+                    <!-- C1 event values must be between 500 and 9,999 -->
+                    <event value="500" 
+                        symbol="MsvcEtwC1Start"
+                        task="C1"
+                        opcode="win:Start"
+                        template="GeneralStartTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="501" 
+                        symbol="MsvcEtwC1Stop"
+                        task="C1"
+                        opcode="win:Stop"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="502" 
+                        symbol="MsvcEtwC1CommandLine"
+                        task="C1"
+                        opcode="CommandLine"
+                        template="GeneralCommandLineTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="503" 
+                        symbol="MsvcEtwC1Warning"
+                        task="C1"
+                        opcode="Warning"
+                        template="C1WarningTemplate" 
+                        level="win:Verbose"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="504" 
+                        symbol="MsvcEtwC1StartHeader"
+                        task="C1"
+                        opcode="StartHeader"
+                        template="C1StartHeaderTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="505" 
+                        symbol="MsvcEtwC1StopHeader"
+                        task="C1"
+                        opcode="StopHeader"
+                        template="C1StopHeaderTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                </events>
+                
+                
+                <!-- C2 SECTION ****************************************************
+                ******************************************************************-->
+                <tasks>
+                    <task name="C2" 
+                          symbol="MSVC_ETW_TASK_C2"
+                          value="3">
+                          
+                        <opcodes>
+                            <opcode name="StartFunctionOptimization" 
+                                    symbol="MSVC_ETW_OPCODE_C2_STARTFUNCTIONOPTIMIZATION" 
+                                    value="11"/>
+                                    
+                            <opcode name="StopFunctionOptimization" 
+                                    symbol="MSVC_ETW_OPCODE_C2_STOPFUNCTIONOPTIMIZATION" 
+                                    value="12"/>
+                                    
+                            <opcode name="StartWPAPrepass" 
+                                    symbol="MSVC_ETW_OPCODE_C2_STARTWPAPREPASS" 
+                                    value="13"/>
+                                    
+                            <opcode name="StopWPAPrepass" 
+                                    symbol="MSVC_ETW_OPCODE_C2_STOPWPAPREPASS" 
+                                    value="14"/>
+                                    
+                            <opcode name="StartCodeGeneration" 
+                                    symbol="MSVC_ETW_OPCODE_C2_STARTCODEGENERATION" 
+                                    value="15"/>
+                                    
+                            <opcode name="StopCodeGeneration" 
+                                    symbol="MSVC_ETW_OPCODE_C2_STOPCODEGENERATION" 
+                                    value="16"/>
+                               
+                        </opcodes>
+                    </task>
+                    
+                </tasks>
+                
+                <templates>                    
+                    <template tid="C2WarningTemplate">
+                        <data name="WarningNumber" inType="win:Int32"/>
+                        <data name="Function" inType="win:AnsiString"/>
+                        <data name="Module" inType="win:UnicodeString"/>
+                    </template>
+                    
+                    <template tid="C2StartFunctionOptimizationTemplate">
+                        <data name="Function" inType="win:AnsiString"/>
+                    </template>
+                </templates>
+                
+                <events>
+                    <!-- C2 event values must be between 10,000 and 19,999 -->
+                    <event value="10000" 
+                        symbol="MsvcEtwC2Start"
+                        task="C2"
+                        opcode="win:Start"
+                        template="GeneralStartTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="10001" 
+                        symbol="MsvcEtwC2Stop"
+                        task="C2"
+                        opcode="win:Stop"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"                        
+                        keywords="" />
+                        
+                    <event value="10002" 
+                        symbol="MsvcEtwC2CommandLine"
+                        task="C2"
+                        opcode="CommandLine"
+                        template="GeneralCommandLineTemplate" 
+                        level="win:Informational"
+                        version="0"                        
+                        keywords="" />
+                     
+                    <event value="10003" 
+                        symbol="MsvcEtwC2Warning"
+                        task="C2"
+                        opcode="Warning"
+                        template="C2WarningTemplate" 
+                        level="win:Verbose" 
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="10004" 
+                        symbol="MsvcEtwC2StartFunctionOptimization"
+                        task="C2"
+                        opcode="StartFunctionOptimization"
+                        template="C2StartFunctionOptimizationTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="10005" 
+                        symbol="MsvcEtwC2StopFunctionOptimization"
+                        task="C2"
+                        opcode="StopFunctionOptimization"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="10006" 
+                        symbol="MsvcEtwC2StartWPAPrepass"
+                        task="C2"
+                        opcode="StartWPAPrepass"
+                        template="GeneralStartTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="10007" 
+                        symbol="MsvcEtwC2StopWPAPrepass"
+                        task="C2"
+                        opcode="StopWPAPrepass"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="10008" 
+                        symbol="MsvcEtwC2StartCodeGeneration"
+                        task="C2"
+                        opcode="StartCodeGeneration"
+                        template="GeneralStartTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="10009" 
+                        symbol="MsvcEtwC2StopCodeGeneration"
+                        task="C2"
+                        opcode="StopCodeGeneration"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                </events>
+                
+                <!-- Link SECTION **************************************************
+                ******************************************************************-->
+                <tasks>
+                    <task name="Link" 
+                          symbol="MSVC_ETW_TASK_LINK"
+                          value="4">
+                        
+                        <opcodes>        
+                            <opcode name="ExpandedCommandLine" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_EXPANDEDCOMMANDLINE" 
+                                    value="11"/>
+                        
+                            <opcode name="Input" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_INPUT" 
+                                    value="12"/>
+                                    
+                            <opcode name="ExecutableImageOutput" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_EXECUTABLEIMAGEOUTPUT" 
+                                    value="13"/>
+                                    
+                            <opcode name="LibOutput" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_LIBOUTPUT" 
+                                    value="14"/>
+                                    
+                            <opcode name="ImpLibOutput" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_IMPLIBOUTPUT" 
+                                    value="15"/>
+                                    
+                            <opcode name="ExpOutput" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_EXPOUTPUT" 
+                                    value="16"/>
+                                    
+                            <opcode name="StartPreCodeGenOptRef" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STARTLINKPRECODEGENOPTREF" 
+                                    value="30"/>
+                                    
+                            <opcode name="StopPreCodeGenOptRef" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STOPLINKPRECODEGENOPTREF" 
+                                    value="31"/>
+                                    
+                            <opcode name="StartOptRef" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STARTLINKOPTREF" 
+                                    value="32"/>
+                                    
+                            <opcode name="StopOptRef" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STOPLINKOPTREF" 
+                                    value="33"/>
+                                    
+                            <opcode name="StartOptICF" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STARTLINKOPTICF" 
+                                    value="34"/>
+                                    
+                            <opcode name="StopOptICF" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STOPLINKOPTICF" 
+                                    value="35"/>
+                                    
+                            <opcode name="StartCodeGeneration" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STARTLINKCODEGENERATION" 
+                                    value="36"/>
+                                    
+                            <opcode name="StopCodeGeneration" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STOPLINKCODEGENERATION" 
+                                    value="37"/>
+                                    
+                            <opcode name="StartPass1" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STARTPASS1" 
+                                    value="38"/>
+                                    
+                            <opcode name="StopPass1" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STOPPASS1" 
+                                    value="39"/>
+                                    
+                            <opcode name="StartPass2" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STARTPASS2" 
+                                    value="40"/>
+                                    
+                            <opcode name="StopPass2" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STOPPASS2" 
+                                    value="41"/>
+                                    
+                            <opcode name="StartImpLibAndExpGeneration" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STARTIMPLIBANDEXPGENERATION"
+                                    value="42"/>
+                                    
+                            <opcode name="StopImpLibAndExpGeneration" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STOPIMPLIBANDEXPGENERATION"
+                                    value="43"/>
+                                    
+                            <opcode name="StartOptLBR" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STARTOPTLBR"
+                                    value="44"/>
+                                    
+                            <opcode name="StopOptLBR" 
+                                    symbol="MSVC_ETW_OPCODE_LINK_STOPOPTLBR"
+                                    value="45"/>
+                        </opcodes>
+                                
+                    </task>
+                    
+                </tasks>
+                
+                <templates>                    
+                    <template tid="LinkStartTemplate">
+                        <data name="Version" inType="win:AnsiString"/>
+                        <data name="CurrentWorkingDirectory" inType="win:UnicodeString"/>
+                    </template>
+                    
+                    <template tid="LinkInputOutputTemplate">
+                        <data name="Path" inType="win:UnicodeString"/>
+                    </template>
+                    
+                    <template tid="LinkWarningTemplate">
+                        <data name="WarningNumber" inType="win:Int32"/>
+                        <data name="Module" inType="win:UnicodeString"/>
+                    </template>
+                </templates>
+                
+                <events>
+                    <!-- Link event values must be between 20,000 and 24,999 -->
+                    <event value="20000" 
+                        symbol="MsvcEtwLinkStart"
+                        task="Link"
+                        opcode="win:Start"
+                        template="LinkStartTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20001" 
+                        symbol="MsvcEtwLinkStop"
+                        task="Link"
+                        opcode="win:Stop"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                     <event value="20003" 
+                        symbol="MsvcEtwLinkExpandedCommandLine"
+                        task="Link"
+                        opcode="ExpandedCommandLine"
+                        template="GeneralCommandLineTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20004" 
+                        symbol="MsvcEtwLinkInput"
+                        task="Link"
+                        opcode="Input"
+                        template="LinkInputOutputTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20005" 
+                        symbol="MsvcEtwLinkExecutableImageOutput"
+                        task="Link"
+                        opcode="ExecutableImageOutput"
+                        template="LinkInputOutputTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20006" 
+                        symbol="MsvcEtwLinkLibOutput"
+                        task="Link"
+                        opcode="LibOutput"
+                        template="LinkInputOutputTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20007" 
+                        symbol="MsvcEtwLinkImpLibOutput"
+                        task="Link"
+                        opcode="ImpLibOutput"
+                        template="LinkInputOutputTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20008" 
+                        symbol="MsvcEtwLinkExpOutput"
+                        task="Link"
+                        opcode="ExpOutput"
+                        template="LinkInputOutputTemplate" 
+                        level="win:Informational" 
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20021" 
+                        symbol="MsvcEtwLinkWarning"
+                        task="Link"
+                        opcode="Warning"
+                        template="LinkWarningTemplate" 
+                        level="win:Verbose"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20022" 
+                        symbol="MsvcEtwLinkStartPreCodeGenOptRef"
+                        task="Link"
+                        opcode="StartPreCodeGenOptRef"
+                        template="GeneralStartTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20023" 
+                        symbol="MsvcEtwLinkStopPreCodeGenOptRef"
+                        task="Link"
+                        opcode="StopPreCodeGenOptRef"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20024" 
+                        symbol="MsvcEtwLinkStartOptRef"
+                        task="Link"
+                        opcode="StartOptRef"
+                        template="GeneralStartTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20025" 
+                        symbol="MsvcEtwLinkStopOptRef"
+                        task="Link"
+                        opcode="StopOptRef"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20026" 
+                        symbol="MsvcEtwLinkStartOptICF"
+                        task="Link"
+                        opcode="StartOptICF"
+                        template="GeneralStartTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20027" 
+                        symbol="MsvcEtwLinkStopOptICF"
+                        task="Link"
+                        opcode="StopOptICF"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20028" 
+                        symbol="MsvcEtwLinkStartCodeGeneration"
+                        task="Link"
+                        opcode="StartCodeGeneration"
+                        template="GeneralStartTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20029" 
+                        symbol="MsvcEtwLinkStopCodeGeneration"
+                        task="Link"
+                        opcode="StopCodeGeneration"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20030" 
+                        symbol="MsvcEtwLinkStartPass1"
+                        task="Link"
+                        opcode="StartPass1"
+                        template="GeneralStartTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20031" 
+                        symbol="MsvcEtwLinkStopPass1"
+                        task="Link"
+                        opcode="StopPass1"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20032" 
+                        symbol="MsvcEtwLinkStartPass2"
+                        task="Link"
+                        opcode="StartPass2"
+                        template="GeneralStartTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20033" 
+                        symbol="MsvcEtwLinkStopPass2"
+                        task="Link"
+                        opcode="StopPass2"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20034" 
+                        symbol="MsvcEtwLinkStartImpLibAndExpGeneration"
+                        task="Link"
+                        opcode="StartImpLibAndExpGeneration"
+                        template="GeneralStartTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20035" 
+                        symbol="MsvcEtwLinkStopImpLibAndExpGeneration"
+                        task="Link"
+                        opcode="StopImpLibAndExpGeneration"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20036" 
+                        symbol="MsvcEtwLinkStartOptLBR"
+                        task="Link"
+                        opcode="StartOptLBR"
+                        template="GeneralStartTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20037" 
+                        symbol="MsvcEtwLinkStopOptLBR"
+                        task="Link"
+                        opcode="StopOptLBR"
+                        template="GeneralStopTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                    <event value="20038" 
+                        symbol="MsvcEtwLinkEnvironmentVariable"
+                        task="Link"
+                        opcode="EnvironmentVariable"
+                        template="GeneralEnvironmentVariableTemplate" 
+                        level="win:Informational"
+                        version="0"
+                        keywords="" />
+                        
+                </events>
+
+
+            </provider>
+        </events>
+
+    </instrumentation>
+    
+</instrumentationManifest>

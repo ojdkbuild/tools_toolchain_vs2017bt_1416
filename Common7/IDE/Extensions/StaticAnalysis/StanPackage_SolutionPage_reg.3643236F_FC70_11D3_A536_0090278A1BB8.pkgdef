@@ -1,0 +1,6 @@
+[$RootKey$\CLSID\{9d563f03-07bc-4476-97e9-78f0272f7a86}]
+@="SolutionPage class"
+"InprocServer32"="$ShellFolder$\Common7\IDE\PrivateAssemblies\stanpackage.dll"
+"ThreadingModel"="Apartment"
+
+[$RootKey$\SolutionPropertyPages\{9d563f03-07bc-4476-97e9-78f0272f7a86}]

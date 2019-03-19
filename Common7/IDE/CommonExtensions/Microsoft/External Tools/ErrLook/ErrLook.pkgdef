@@ -1,0 +1,9 @@
+[$RootKey$\External Tools]
+
+[$RootKey$\External Tools\Error Loo&kup]
+"ToolArg"=""
+"ToolCmd"="$ShellFolder$\Common7\Tools\errlook.exe"
+"ToolDir"="$(TargetDir)"
+"ToolOpt"=dword:00000001
+"ToolTitlePkg"="{1B027A40-8F43-11D0-8D11-00A0C91BC942}"
+"ToolTitleResID"=dword:00000515

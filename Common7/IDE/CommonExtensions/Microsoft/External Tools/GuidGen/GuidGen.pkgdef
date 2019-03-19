@@ -1,0 +1,9 @@
+[$RootKey$\External Tools]
+
+[$RootKey$\External Tools\Create GUID]
+"ToolOpt"=dword:00000001
+"ToolTitleResID"=dword:00003875
+"ToolArg"=""
+"ToolCmd"="$BaseInstallDir$\Common7\Tools\guidgen.exe"
+"ToolDir"="$BaseInstallDir$\Common7\Tools\"
+"ToolTitlePkg"="{DA9FB551-C724-11D0-AE1F-00A0C90FFFC3}"

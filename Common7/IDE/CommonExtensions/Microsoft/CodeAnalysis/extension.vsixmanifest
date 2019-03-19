@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
+  <Metadata>
+      <Identity Id="Microsoft.VisualStudio.CodeAnalysis" Version="15.0" Language="en-US" Publisher="Microsoft Corporation"/>
+      <DisplayName>CodeAnalysis</DisplayName>
+      <Description>Microsoft Visual Studio Code Analysis</Description>
+  </Metadata>
+  <Installation SystemComponent="true">
+      <InstallationTarget Id="Microsoft.VisualStudio.Ultimate" Version="15.0" />
+      <InstallationTarget Id="Microsoft.VisualStudio.VWDExpress" Version="15.0" />
+      <InstallationTarget Id="Microsoft.VisualStudio.VPDExpress" Version="15.0" />
+      <InstallationTarget Id="Microsoft.VisualStudio.VSWinExpress" Version="15.0" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" Version="4.0"/>
+  </Dependencies>
+
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.MefComponent" Path="Microsoft.VisualStudio.CodeAnalysis.VCPlugin.dll" />
+    <Asset Type="Microsoft.VisualStudio.MefComponent" Path="..\..\..\PrivateAssemblies\StanCore.dll" />
+  </Assets>
+</PackageManifest>
